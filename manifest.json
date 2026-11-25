@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "archguima.capture-toolkit",
   "name": "Capture Toolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "ArchGuima",
-  "description": "Retro minimalist capture, recording, OCR, QR and color picker toolkit for the Omarchy bar",
+  "description": "Retro minimalist capture, configurable screen recording (FPS & resolution), OCR, QR and color picker toolkit for the Omarchy bar",
   "kinds": [
     "bar-widget"
   ],
@@ -13,7 +13,7 @@
   },
   "barWidget": {
     "displayName": "Capture Toolkit",
-    "description": "Screenshots, screen recording, OCR, QR code, color picker and transcoder",
+    "description": "Screenshots, configurable screen recording (30/60 FPS, 480p-1080p), OCR, QR code, color picker and transcoder",
     "category": "Utilities",
     "allowMultiple": false,
     "defaultSection": "right"

@@ -1,0 +1,38 @@
+#!/bin/bash
+set -euo pipefail
+
+self_dir=$(CDPATH='' cd -P -- "$(dirname -- "$0")" && pwd -P)
+
+clean_path=""
+IFS=':' read -r -a path_entries <<< "${PATH:-}"
+for entry in "${path_entries[@]}"; do
+  [[ -n $entry ]] || continue
+  entry_phys=$(CDPATH='' cd -P -- "$entry" 2>/dev/null && pwd -P) || entry_phys="${entry%/}"
+  [[ $entry_phys != "$self_dir" ]] || continue
+  clean_path="${clean_path:+$clean_path:}$entry"
+done
+export PATH="$clean_path"
+
+real_bin=$(command -v gpu-screen-recorder) || exit 127
+# Prevent self-recursion if PATH somehow still resolves back to this shim.
+[[ ! $real_bin -ef $0 ]] || exit 127
+
+fps="${CAPTURE_TOOLKIT_FPS:-}"
+unset CAPTURE_TOOLKIT_FPS
+case "$fps" in
+  30 | 60) ;;
+  *) fps="" ;;
+esac
+
+args=()
+while (($#)); do
+  if [[ $1 == "-f" && $# -ge 2 && -n $fps ]]; then
+    args+=(-f "$fps")
+    shift 2
+  else
+    args+=("$1")
+    shift
+  fi
+done
+
+exec "$real_bin" "${args[@]}"
