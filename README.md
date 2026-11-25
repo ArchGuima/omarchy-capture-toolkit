@@ -20,6 +20,20 @@ omarchy plugin add https://github.com/ArchGuima/omarchy-capture-toolkit --enable
 omarchy bar put archguima.capture-toolkit --section right
 ```
 
+## Removal
+
+```bash
+omarchy plugin remove archguima.capture-toolkit
+```
+
+## Dependencies
+
+Uses only tools bundled with Omarchy:
+
+- `omarchy-capture-screenshot`, `omarchy-capture-screenrecording`, `omarchy-capture-webcam-resize`, `omarchy-capture-text`, `omarchy-capture-qr`, `omarchy-transcode`, `omarchy-hw-webcam`
+- `hyprpicker` (color picker)
+- `xdg-user-dir` and `xdg-open` (opening Screenshots and Videos folders)
+
 ## Keyboard Navigation
 
 | Key | Action |
